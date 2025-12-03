@@ -296,7 +296,13 @@ export default function ChatInterface() {
       const timeoutId = setTimeout(() => controller.abort(), 120000) // 2분 타임아웃
       
       // 환경 변수 확인 (빌드 타임에 주입됨)
-      const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+      let API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+      
+      // 프로토콜이 없으면 추가
+      if (API_URL && !API_URL.startsWith('http://') && !API_URL.startsWith('https://')) {
+        console.warn("⚠️ API_URL에 프로토콜이 없습니다. https://를 추가합니다.");
+        API_URL = `https://${API_URL}`;
+      }
       
       // 환경 변수가 없으면 경고 및 상세 안내
       if (!process.env.NEXT_PUBLIC_API_URL || API_URL === "http://localhost:8000") {
