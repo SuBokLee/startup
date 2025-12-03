@@ -77,7 +77,7 @@ export default function ChatInterface() {
         {
           id: "1",
           role: "assistant",
-          content: "안녕하세요! 저는 창업 견인차의 Master입니다. 어떤 도움이 필요하신가요?",
+          content: "안녕하세요! 저는 Startup Sherpa의 Master입니다. 창업을 도와주는 짐꾼이자 길잡이로서 어떤 도움이 필요하신가요?",
           agent: "supervisor",
           timestamp: new Date(),
         },
@@ -117,7 +117,7 @@ export default function ChatInterface() {
           {
             id: "1",
             role: "assistant",
-            content: "안녕하세요! 저는 창업 견인차의 Master입니다. 어떤 도움이 필요하신가요?",
+            content: "안녕하세요! 저는 Startup Sherpa의 Master입니다. 창업을 도와주는 짐꾼이자 길잡이로서 어떤 도움이 필요하신가요?",
             agent: "supervisor",
             timestamp: new Date(),
           },
@@ -463,7 +463,7 @@ export default function ChatInterface() {
       <div className={`w-64 ${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-gray-50 border-gray-200'} border-r flex flex-col h-screen`}>
         {/* Agent Selection Section - Top */}
         <div className={`p-4 border-b ${isDarkMode ? 'border-gray-700 bg-gray-900' : 'border-gray-200 bg-white'}`}>
-          <h2 className={`text-xl font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>창업 견인차</h2>
+          <h2 className={`text-xl font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>Startup Sherpa</h2>
           <div className={`text-sm font-semibold mb-2 ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>에이전트 선택</div>
           <div
             onClick={() => setSelectedAgent(null)}

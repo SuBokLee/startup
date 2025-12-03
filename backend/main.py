@@ -1,5 +1,6 @@
 """
-창업 견인차 Backend - FastAPI Application with LangGraph
+Startup Sherpa Backend - FastAPI Application with LangGraph
+창업을 도와주는 짐꾼이자 길잡이
 """
 
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
@@ -18,7 +19,7 @@ from direct_agent import route_to_agent
 # Load environment variables
 load_dotenv()
 
-app = FastAPI(title="창업 견인차 API", version="2.0.0")
+app = FastAPI(title="Startup Sherpa API", version="2.0.0")
 
 # CORS middleware
 # Get allowed origins from environment variable or use defaults
@@ -60,7 +61,7 @@ class ChatResponse(BaseModel):
 async def root():
     """Root endpoint"""
     return {
-        "message": "창업 견인차 API",
+        "message": "Startup Sherpa API - 창업을 도와주는 짐꾼이자 길잡이",
         "version": "2.0.0",
         "agents": [
             "CofounderAgent",
