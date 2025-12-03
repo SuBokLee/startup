@@ -522,8 +522,8 @@ export default function ChatInterface() {
         {/* Header */}
         <div className={`${isDarkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'} border-b p-4 flex items-center justify-between`}>
           <div>
-            <h1 className={`text-2xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>창업 견인차</h1>
-            <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>스타트업 창업자를 위한 AI 어시스턴트</p>
+            <h1 className={`text-2xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>Startup Sherpa</h1>
+            <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>창업을 도와주는 짐꾼이자 길잡이</p>
           </div>
           <Button
             variant="ghost"
