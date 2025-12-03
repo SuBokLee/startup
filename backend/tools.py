@@ -4,7 +4,11 @@ Tools for FounderOS Agents
 
 import os
 from dotenv import load_dotenv
-from langchain_community.tools.tavily_search import TavilySearchResults
+try:
+    from langchain_tavily import TavilySearchResults
+except ImportError:
+    # Fallback to old import for compatibility
+    from langchain_community.tools.tavily_search import TavilySearchResults
 
 # Load environment variables
 load_dotenv()
