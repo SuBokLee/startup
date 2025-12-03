@@ -437,7 +437,7 @@ export default function ChatInterface() {
       {
         id: "1",
         role: "assistant",
-        content: "안녕하세요! 저는 FounderOS의 Supervisor입니다. 어떤 도움이 필요하신가요?",
+        content: "안녕하세요! 저는 Startup Sherpa의 Master입니다. 창업을 도와주는 짐꾼이자 길잡이로서 어떤 도움이 필요하신가요?",
         agent: "supervisor",
         timestamp: new Date(),
       },
