@@ -295,7 +295,14 @@ export default function ChatInterface() {
       const controller = new AbortController()
       const timeoutId = setTimeout(() => controller.abort(), 120000) // 2분 타임아웃
       
+      // 환경 변수 확인 (빌드 타임에 주입됨)
       const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+      
+      // 환경 변수가 없으면 경고
+      if (!process.env.NEXT_PUBLIC_API_URL) {
+        console.warn("⚠️ NEXT_PUBLIC_API_URL 환경 변수가 설정되지 않았습니다!");
+        console.warn("⚠️ Vercel → Settings → Environment Variables에서 설정해주세요.");
+      }
       const response = await fetch(`${API_URL}/chat`, {
         method: "POST",
         headers: {
