@@ -298,11 +298,20 @@ export default function ChatInterface() {
       // 환경 변수 확인 (빌드 타임에 주입됨)
       const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
       
-      // 환경 변수가 없으면 경고
-      if (!process.env.NEXT_PUBLIC_API_URL) {
-        console.warn("⚠️ NEXT_PUBLIC_API_URL 환경 변수가 설정되지 않았습니다!");
-        console.warn("⚠️ Vercel → Settings → Environment Variables에서 설정해주세요.");
+      // 환경 변수가 없으면 경고 및 상세 안내
+      if (!process.env.NEXT_PUBLIC_API_URL || API_URL === "http://localhost:8000") {
+        console.error("❌ NEXT_PUBLIC_API_URL 환경 변수가 설정되지 않았습니다!");
+        console.error("❌ 현재 API_URL:", API_URL);
+        console.error("❌ 해결 방법:");
+        console.error("   1. Vercel → Settings → Environment Variables");
+        console.error("   2. NEXT_PUBLIC_API_URL 추가");
+        console.error("   3. 값: Railway 백엔드 URL");
+        console.error("   4. Preview 환경 체크 필수!");
+        console.error("   5. 재배포");
       }
+      
+      console.log("🔍 API_URL:", API_URL);
+      console.log("🔍 Request URL:", `${API_URL}/chat`);
       const response = await fetch(`${API_URL}/chat`, {
         method: "POST",
         headers: {
