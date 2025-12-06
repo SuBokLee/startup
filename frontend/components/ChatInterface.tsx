@@ -10,6 +10,7 @@ import remarkGfm from "remark-gfm"
 import LeanCanvas from "./frameworks/LeanCanvas"
 import BusinessModelCanvas from "./frameworks/BusinessModelCanvas"
 import ConversationHistory from "./ConversationHistory"
+import AgentGuide from "./AgentGuide"
 import { supabase } from "../lib/supabase"
 
 interface Message {
@@ -525,18 +526,20 @@ export default function ChatInterface() {
             <h1 className={`text-2xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>Startup Sherpa</h1>
             <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-500'}`}>창업을 도와주는 짐꾼이자 길잡이</p>
           </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setIsDarkMode(!isDarkMode)}
-            className="ml-4"
-          >
-            {isDarkMode ? (
-              <Sun className="h-5 w-5 text-yellow-500" />
-            ) : (
-              <Moon className="h-5 w-5 text-gray-600" />
-            )}
-          </Button>
+          <div className="flex items-center gap-2">
+            <AgentGuide isDarkMode={isDarkMode} />
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setIsDarkMode(!isDarkMode)}
+            >
+              {isDarkMode ? (
+                <Sun className="h-5 w-5 text-yellow-500" />
+              ) : (
+                <Moon className="h-5 w-5 text-gray-600" />
+              )}
+            </Button>
+          </div>
         </div>
 
         {/* Messages */}
