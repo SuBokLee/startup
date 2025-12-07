@@ -15,9 +15,9 @@ def get_gemini_llm(model: str = "gemini-2.0-flash", temperature: float = 0.7) ->
     Initialize ChatGoogleGenerativeAI with Gemini model
     
     Args:
-        model: Model name (default: "gemini-1.5-pro")
+        model: Model name (default: "gemini-2.0-flash")
               Note: Do NOT include "models/" prefix - ChatGoogleGenerativeAI adds it automatically
-              Use "gemini-1.5-pro" or "gemini-1.5-flash" (without version suffix)
+              Use "gemini-2.0-flash" (available in API)
         temperature: Temperature for generation (default: 0.7)
     
     Returns:
