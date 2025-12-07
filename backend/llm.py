@@ -41,7 +41,8 @@ def get_supervisor_llm() -> ChatGoogleGenerativeAI:
 
 def get_agent_llm() -> ChatGoogleGenerativeAI:
     """Get LLM for Agents (high-quality reasoning)"""
-    # Use gemini-2.0-flash as gemini-1.5-pro is not available
-    # For better quality, can use gemini-2.5-pro if available
-    return get_gemini_llm(model="gemini-2.0-flash", temperature=0.7)
+    # Try gemini-1.5-flash first (more quota available)
+    # Fallback to gemini-2.0-flash if needed
+    # Note: gemini-1.5-flash has better quota limits for free tier
+    return get_gemini_llm(model="gemini-1.5-flash", temperature=0.7)
 

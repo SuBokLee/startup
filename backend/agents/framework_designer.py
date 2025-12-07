@@ -106,7 +106,20 @@ Lean Canvas의 9개 블록을 모두 채워주세요. **모든 내용은 반드�
                 "last_agent": "framework_designer"
             }
         except Exception as e:
-            error_message = f"[Framework Designer Error] {str(e)}"
+            error_str = str(e)
+            if "429" in error_str or "quota" in error_str.lower() or "Quota exceeded" in error_str:
+                error_message = """⚠️ **API 할당량 초과**
+
+현재 Google Gemini API의 무료 티어 할당량을 초과했습니다.
+
+**해결 방법:**
+1. 잠시 후 다시 시도해주세요 (약 1분 대기)
+2. Google AI Studio에서 할당량 확인: https://ai.dev/usage
+3. 필요시 유료 플랜으로 업그레이드 고려
+
+불편을 드려 죄송합니다."""
+            else:
+                error_message = f"⚠️ **프레임워크 디자이너 오류**\n\n{error_str}\n\n잠시 후 다시 시도해주세요."
             return {
                 "messages": [AIMessage(content=error_message)],
                 "next": "FINISH",
@@ -150,7 +163,20 @@ Business Model Canvas의 9개 블록을 모두 채워주세요. **모든 내용�
                 "last_agent": "framework_designer"
             }
         except Exception as e:
-            error_message = f"[Framework Designer Error] {str(e)}"
+            error_str = str(e)
+            if "429" in error_str or "quota" in error_str.lower() or "Quota exceeded" in error_str:
+                error_message = """⚠️ **API 할당량 초과**
+
+현재 Google Gemini API의 무료 티어 할당량을 초과했습니다.
+
+**해결 방법:**
+1. 잠시 후 다시 시도해주세요 (약 1분 대기)
+2. Google AI Studio에서 할당량 확인: https://ai.dev/usage
+3. 필요시 유료 플랜으로 업그레이드 고려
+
+불편을 드려 죄송합니다."""
+            else:
+                error_message = f"⚠️ **프레임워크 디자이너 오류**\n\n{error_str}\n\n잠시 후 다시 시도해주세요."
             return {
                 "messages": [AIMessage(content=error_message)],
                 "next": "FINISH",
@@ -170,7 +196,20 @@ Business Model Canvas의 9개 블록을 모두 채워주세요. **모든 내용�
                 "last_agent": "framework_designer"
             }
         except Exception as e:
-            error_message = f"[Framework Designer Error] {str(e)}"
+            error_str = str(e)
+            if "429" in error_str or "quota" in error_str.lower() or "Quota exceeded" in error_str:
+                error_message = """⚠️ **API 할당량 초과**
+
+현재 Google Gemini API의 무료 티어 할당량을 초과했습니다.
+
+**해결 방법:**
+1. 잠시 후 다시 시도해주세요 (약 1분 대기)
+2. Google AI Studio에서 할당량 확인: https://ai.dev/usage
+3. 필요시 유료 플랜으로 업그레이드 고려
+
+불편을 드려 죄송합니다."""
+            else:
+                error_message = f"⚠️ **프레임워크 디자이너 오류**\n\n{error_str}\n\n잠시 후 다시 시도해주세요."
             return {
                 "messages": [AIMessage(content=error_message)],
                 "next": "FINISH",
