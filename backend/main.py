@@ -152,8 +152,31 @@ async def chat_endpoint(chat_message: ChatMessage):
         )
     
     except Exception as e:
+        error_str = str(e)
+        
+        # Handle quota exceeded errors
+        if "429" in error_str or "quota" in error_str.lower() or "Quota exceeded" in error_str:
+            error_message = """⚠️ **API 할당량 초과**
+
+현재 Google Gemini API의 무료 티어 할당량을 초과했습니다.
+
+**해결 방법:**
+1. 잠시 후 다시 시도해주세요 (약 1분 대기)
+2. Google AI Studio에서 할당량 확인: https://ai.dev/usage
+3. 필요시 유료 플랜으로 업그레이드 고려
+
+**대안:**
+- 다른 에이전트를 사용해보세요
+- 잠시 후 다시 시도해주세요
+
+불편을 드려 죄송합니다."""
+        elif "Error" in error_str or "error" in error_str.lower():
+            error_message = f"⚠️ **오류가 발생했습니다**\n\n{error_str}\n\n잠시 후 다시 시도해주세요."
+        else:
+            error_message = f"⚠️ **오류가 발생했습니다**\n\n{error_str}"
+        
         return ChatResponse(
-            response=f"Error: {str(e)}",
+            response=error_message,
             agent="supervisor",
             thread_id=chat_message.thread_id or "error"
         )
