@@ -10,7 +10,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 load_dotenv()
 
 
-def get_gemini_llm(model: str = "gemini-1.5-pro", temperature: float = 0.7) -> ChatGoogleGenerativeAI:
+def get_gemini_llm(model: str = "gemini-1.5-pro-002", temperature: float = 0.7) -> ChatGoogleGenerativeAI:
     """
     Initialize ChatGoogleGenerativeAI with Gemini model
     
@@ -36,13 +36,13 @@ def get_gemini_llm(model: str = "gemini-1.5-pro", temperature: float = 0.7) -> C
 # Default LLM instances
 def get_supervisor_llm() -> ChatGoogleGenerativeAI:
     """Get LLM for Supervisor (faster routing)"""
-    # Use models/gemini-1.5-flash for faster responses and better quota
-    return get_gemini_llm(model="models/gemini-1.5-flash", temperature=0.3)
+    # Use gemini-1.5-flash-002 for faster responses and better quota
+    return get_gemini_llm(model="gemini-1.5-flash-002", temperature=0.3)
 
 
 def get_agent_llm() -> ChatGoogleGenerativeAI:
     """Get LLM for Agents (high-quality reasoning)"""
-    # Use models/gemini-1.5-pro for high-quality responses
-    # If quota issues occur, can fallback to models/gemini-1.5-flash
-    return get_gemini_llm(model="models/gemini-1.5-pro", temperature=0.7)
+    # Use gemini-1.5-pro-002 for high-quality responses
+    # If quota issues occur, can fallback to gemini-1.5-flash-002
+    return get_gemini_llm(model="gemini-1.5-pro-002", temperature=0.7)
 
