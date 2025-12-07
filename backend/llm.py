@@ -29,7 +29,8 @@ def get_gemini_llm(model: str = "gemini-1.5-pro", temperature: float = 0.7) -> C
         model=model,
         temperature=temperature,
         google_api_key=api_key,
-        convert_system_message_to_human=True  # Handle system messages properly
+        convert_system_message_to_human=True,  # Handle system messages properly
+        api_version="v1"  # Use v1 API instead of v1beta for better compatibility
     )
 
 
