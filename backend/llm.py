@@ -10,13 +10,14 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 load_dotenv()
 
 
-def get_gemini_llm(model: str = "gemini-1.5-pro-002", temperature: float = 0.7) -> ChatGoogleGenerativeAI:
+def get_gemini_llm(model: str = "gemini-1.5-pro", temperature: float = 0.7) -> ChatGoogleGenerativeAI:
     """
     Initialize ChatGoogleGenerativeAI with Gemini model
     
     Args:
-        model: Model name (default: "gemini-1.5-pro-002")
+        model: Model name (default: "gemini-1.5-pro")
               Note: Do NOT include "models/" prefix - ChatGoogleGenerativeAI adds it automatically
+              Use "gemini-1.5-pro" or "gemini-1.5-flash" (without version suffix)
         temperature: Temperature for generation (default: 0.7)
     
     Returns:
@@ -41,15 +42,15 @@ def get_gemini_llm(model: str = "gemini-1.5-pro-002", temperature: float = 0.7) 
 # Default LLM instances
 def get_supervisor_llm() -> ChatGoogleGenerativeAI:
     """Get LLM for Supervisor (faster routing)"""
-    # Use gemini-1.5-flash-002 for faster responses and better quota
-    # Note: Do NOT include "models/" prefix
-    return get_gemini_llm(model="gemini-1.5-flash-002", temperature=0.3)
+    # Use gemini-1.5-flash for faster responses and better quota
+    # Note: Do NOT include "models/" prefix or version suffix
+    return get_gemini_llm(model="gemini-1.5-flash", temperature=0.3)
 
 
 def get_agent_llm() -> ChatGoogleGenerativeAI:
     """Get LLM for Agents (high-quality reasoning)"""
-    # Use gemini-1.5-pro-002 for high-quality responses
-    # If quota issues occur, can fallback to gemini-1.5-flash-002
-    # Note: Do NOT include "models/" prefix
-    return get_gemini_llm(model="gemini-1.5-pro-002", temperature=0.7)
+    # Use gemini-1.5-pro for high-quality responses
+    # If quota issues occur, can fallback to gemini-1.5-flash
+    # Note: Do NOT include "models/" prefix or version suffix
+    return get_gemini_llm(model="gemini-1.5-pro", temperature=0.7)
 
