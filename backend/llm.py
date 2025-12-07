@@ -15,7 +15,8 @@ def get_gemini_llm(model: str = "gemini-1.5-pro-002", temperature: float = 0.7) 
     Initialize ChatGoogleGenerativeAI with Gemini model
     
     Args:
-        model: Model name (default: "gemini-1.5-pro")
+        model: Model name (default: "gemini-1.5-pro-002")
+              Note: Do NOT include "models/" prefix - ChatGoogleGenerativeAI adds it automatically
         temperature: Temperature for generation (default: 0.7)
     
     Returns:
@@ -24,6 +25,10 @@ def get_gemini_llm(model: str = "gemini-1.5-pro-002", temperature: float = 0.7) 
     api_key = os.getenv("GOOGLE_API_KEY")
     if not api_key:
         raise ValueError("GOOGLE_API_KEY not found in environment variables")
+    
+    # Remove "models/" prefix if present (ChatGoogleGenerativeAI adds it automatically)
+    if model.startswith("models/"):
+        model = model.replace("models/", "")
     
     return ChatGoogleGenerativeAI(
         model=model,
@@ -37,6 +42,7 @@ def get_gemini_llm(model: str = "gemini-1.5-pro-002", temperature: float = 0.7) 
 def get_supervisor_llm() -> ChatGoogleGenerativeAI:
     """Get LLM for Supervisor (faster routing)"""
     # Use gemini-1.5-flash-002 for faster responses and better quota
+    # Note: Do NOT include "models/" prefix
     return get_gemini_llm(model="gemini-1.5-flash-002", temperature=0.3)
 
 
@@ -44,5 +50,6 @@ def get_agent_llm() -> ChatGoogleGenerativeAI:
     """Get LLM for Agents (high-quality reasoning)"""
     # Use gemini-1.5-pro-002 for high-quality responses
     # If quota issues occur, can fallback to gemini-1.5-flash-002
+    # Note: Do NOT include "models/" prefix
     return get_gemini_llm(model="gemini-1.5-pro-002", temperature=0.7)
 

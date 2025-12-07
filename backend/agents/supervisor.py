@@ -30,6 +30,7 @@ class SupervisorAgent:
     
     def __init__(self):
         # Use gemini-1.5-flash-002 for faster routing
+        # Note: Do NOT include "models/" prefix - ChatGoogleGenerativeAI adds it automatically
         self.llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash-002", temperature=0.3)
         
         # Initialize specialist agents
