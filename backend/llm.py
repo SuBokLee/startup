@@ -29,21 +29,20 @@ def get_gemini_llm(model: str = "gemini-1.5-pro", temperature: float = 0.7) -> C
         model=model,
         temperature=temperature,
         google_api_key=api_key,
-        convert_system_message_to_human=True,  # Handle system messages properly
-        api_version="v1"  # Use v1 API instead of v1beta for better compatibility
+        convert_system_message_to_human=True  # Handle system messages properly
     )
 
 
 # Default LLM instances
 def get_supervisor_llm() -> ChatGoogleGenerativeAI:
     """Get LLM for Supervisor (faster routing)"""
-    # Use gemini-1.5-flash for faster responses and better quota
-    return get_gemini_llm(model="gemini-1.5-flash", temperature=0.3)
+    # Use models/gemini-1.5-flash for faster responses and better quota
+    return get_gemini_llm(model="models/gemini-1.5-flash", temperature=0.3)
 
 
 def get_agent_llm() -> ChatGoogleGenerativeAI:
     """Get LLM for Agents (high-quality reasoning)"""
-    # Use gemini-1.5-pro for high-quality responses
-    # If quota issues occur, can fallback to gemini-1.5-flash
-    return get_gemini_llm(model="gemini-1.5-pro", temperature=0.7)
+    # Use models/gemini-1.5-pro for high-quality responses
+    # If quota issues occur, can fallback to models/gemini-1.5-flash
+    return get_gemini_llm(model="models/gemini-1.5-pro", temperature=0.7)
 
