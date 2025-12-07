@@ -29,8 +29,8 @@ class SupervisorAgent:
     """Supervisor Agent that routes requests to specialist agents"""
     
     def __init__(self):
-        # Use gemini-pro for maximum compatibility
-        self.llm = ChatGoogleGenerativeAI(model="gemini-pro", temperature=0.3)
+        # Use gemini-1.5-flash for faster routing
+        self.llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash", temperature=0.3)
         
         # Initialize specialist agents
         self.agents = {
