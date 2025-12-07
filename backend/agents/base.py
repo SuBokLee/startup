@@ -11,7 +11,7 @@ from langchain.schema import BaseMessage, HumanMessage, AIMessage
 class BaseAgent(ABC):
     """Base class for all specialist agents"""
     
-    def __init__(self, name: str, system_prompt: str, model_name: str = "gemini-1.5-pro-002"):
+    def __init__(self, name: str, system_prompt: str, model_name: str = "gemini-2.0-flash"):
         self.name = name
         self.system_prompt = system_prompt
         self.llm = ChatGoogleGenerativeAI(model=model_name, temperature=0.7)

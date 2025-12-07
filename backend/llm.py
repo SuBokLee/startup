@@ -10,7 +10,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 load_dotenv()
 
 
-def get_gemini_llm(model: str = "gemini-1.5-pro", temperature: float = 0.7) -> ChatGoogleGenerativeAI:
+def get_gemini_llm(model: str = "gemini-2.0-flash", temperature: float = 0.7) -> ChatGoogleGenerativeAI:
     """
     Initialize ChatGoogleGenerativeAI with Gemini model
     
@@ -31,6 +31,9 @@ def get_gemini_llm(model: str = "gemini-1.5-pro", temperature: float = 0.7) -> C
     if model.startswith("models/"):
         model = model.replace("models/", "")
     
+    # Try different model name formats
+    # langchain-google-genai may need just the model name without "models/" prefix
+    # and it handles the API version internally
     return ChatGoogleGenerativeAI(
         model=model,
         temperature=temperature,
@@ -42,15 +45,15 @@ def get_gemini_llm(model: str = "gemini-1.5-pro", temperature: float = 0.7) -> C
 # Default LLM instances
 def get_supervisor_llm() -> ChatGoogleGenerativeAI:
     """Get LLM for Supervisor (faster routing)"""
-    # Use gemini-1.5-flash for faster responses and better quota
-    # Note: Do NOT include "models/" prefix or version suffix
-    return get_gemini_llm(model="gemini-1.5-flash", temperature=0.3)
+    # Use gemini-2.0-flash for faster responses and better quota
+    # Note: Do NOT include "models/" prefix - ChatGoogleGenerativeAI adds it automatically
+    return get_gemini_llm(model="gemini-2.0-flash", temperature=0.3)
 
 
 def get_agent_llm() -> ChatGoogleGenerativeAI:
     """Get LLM for Agents (high-quality reasoning)"""
-    # Use gemini-1.5-pro for high-quality responses
-    # If quota issues occur, can fallback to gemini-1.5-flash
-    # Note: Do NOT include "models/" prefix or version suffix
-    return get_gemini_llm(model="gemini-1.5-pro", temperature=0.7)
+    # Use gemini-2.0-flash for high-quality responses (gemini-2.5-pro also available but may have quota limits)
+    # If quota issues occur, can fallback to gemini-2.0-flash
+    # Note: Do NOT include "models/" prefix - ChatGoogleGenerativeAI adds it automatically
+    return get_gemini_llm(model="gemini-2.0-flash", temperature=0.7)
 
